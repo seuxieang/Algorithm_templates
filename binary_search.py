@@ -2,7 +2,6 @@ import bisect
 
 
 def binarysearch(alist, item, left_most):
-
     """
     注意返回的是该元素的右下标（与bisect不一样）(left一样,right不一样)
     :param alist: 排好序的列表
@@ -11,7 +10,6 @@ def binarysearch(alist, item, left_most):
     """
     if len(alist) == 0:
         return -1
-
     left, right = 0, len(alist) - 1
     while left + 1 < right:
         mid = left + (right - left) // 2
@@ -38,6 +36,29 @@ def binarysearch(alist, item, left_most):
             return left
     return -1
 
+
+def bSearch(nums, target):
+    """
+    :type nums: List[int]
+    :type target: int
+    :rtype: int
+    """
+    if len(nums) == 0:
+        return -1
+    left, right = 0, len(nums) - 1
+    while left + 1 < right:
+        mid = (left + right) // 2
+        if nums[mid] == target:
+            return mid
+        elif nums[mid] < target:
+            left = mid
+        else:
+            right = mid
+    # Post-processing:
+    # End Condition: left + 1 == right
+    if nums[left] == target: return left
+    if nums[right] == target: return right
+    return -1
 
 if __name__ == '__main__':
     a = [1, 2, 2, 2, 2, 2, 4, 5, 6, 7, 8, 9, 10, 12]
